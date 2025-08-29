@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5182'
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -35,7 +35,7 @@ api.interceptors.response.use(
 // API endpoints
 export const searchApi = {
   search: (params: SearchParams) => 
-    api.post('/api/search', params),
+    api.post('/api/Search', params),
   
   ingest: (paperIds: string[]) => 
     api.post('/api/ingest', { paperIds }),

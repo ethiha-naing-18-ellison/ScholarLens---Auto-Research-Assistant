@@ -1,20 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import { QueryProvider } from '@/components/providers/query-provider'
+import Header from '../components/Header'
+import './globals.css?v=2'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ScholarLens - AI Research Assistant',
-  description: 'Advanced AI-powered academic paper search, analysis, and automated reporting platform',
-  keywords: ['research', 'academic papers', 'AI', 'machine learning', 'citations', 'scientific literature'],
-  authors: [{ name: 'ScholarLens Team' }],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+  title: 'ScholarLens - AI-Powered Research Platform',
+  description: 'Discover groundbreaking research, extract insights, and generate comprehensive reports with cutting-edge AI.',
 }
 
 export default function RootLayout({
@@ -23,82 +16,85 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <QueryProvider>
-          <div className="min-h-screen animated-bg">
-            {/* Modern Gradient Header */}
-            <header className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/80">
-              <div className="container mx-auto px-4 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
-                  {/* Logo and Brand */}
-                  <div className="flex items-center space-x-4">
-                    <div className="gradient-primary w-10 h-10 rounded-xl flex items-center justify-center">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h1 className="text-2xl font-bold text-gradient">
-                        {process.env.NEXT_PUBLIC_BRAND_NAME || 'ScholarLens'}
-                      </h1>
-                      <p className="text-xs text-muted-foreground">AI Research Assistant</p>
-                    </div>
-                  </div>
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-900 text-gray-200`}>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          
+          {/* Main Content with proper spacing */}
+          <main className="flex-1">
+            <div className="w-full">
+              {children}
+            </div>
+          </main>
 
-                  {/* Status and Navigation */}
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                      <div className="status-dot status-online"></div>
-                      <span>Connected</span>
+          {/* Professional Footer */}
+          <footer className="footer mt-auto">
+            <div className="page-container">
+              <div className="footer-grid">
+                {/* Company Information */}
+                <div>
+                  <div className="footer-brand">
+                    <div className="footer-logo">S</div>
+                    <span className="footer-brand-text">ScholarLens</span>
+                  </div>
+                  <p className="footer-description">
+                    AI-powered research platform helping researchers discover, analyze, and understand academic literature.
+                  </p>
+                </div>
+                
+                {/* Quick Links */}
+                <div>
+                  <h4 className="footer-section-title">Quick Links</h4>
+                  <div className="footer-links">
+                    <a href="#about" className="footer-link">About</a>
+                    <a href="#features" className="footer-link">Features</a>
+                    <a href="#pricing" className="footer-link">Pricing</a>
+                    <a href="#contact" className="footer-link">Contact</a>
+                  </div>
+                  
+                  <h4 className="footer-section-title" style={{marginTop: '1.5rem'}}>Legal</h4>
+                  <div className="footer-links">
+                    <a href="#privacy" className="footer-link">Privacy Policy</a>
+                    <a href="#terms" className="footer-link">Terms of Service</a>
+                    <a href="#cookies" className="footer-link">Cookie Policy</a>
+                  </div>
+                </div>
+                
+                {/* Developer Contact */}
+                <div>
+                  <h4 className="footer-section-title">Developer</h4>
+                  <div className="footer-developer">
+                    <p className="footer-developer-name">Thiha Naing</p>
+                    <p className="footer-developer-title">Software Engineer, Data Analyst</p>
+                    
+                    <div className="footer-contact-info">
+                      <a href="mailto:thiha.naing.codev@gmail.com" className="footer-contact-item">
+                        📧 thiha.naing.codev@gmail.com
+                      </a>
+                      <a href="tel:+60187799581" className="footer-contact-item">
+                        📞 +60 18-779 9581
+                      </a>
                     </div>
                     
-                    {/* Feature Icons */}
-                    <div className="hidden md:flex items-center space-x-2">
-                      <div className="glass px-3 py-1.5 rounded-lg text-xs font-medium">
-                        🔍 Search
-                      </div>
-                      <div className="glass px-3 py-1.5 rounded-lg text-xs font-medium">
-                        📊 Analyze
-                      </div>
-                      <div className="glass px-3 py-1.5 rounded-lg text-xs font-medium">
-                        📋 Report
-                      </div>
+                    <div className="footer-social-links">
+                      <a href="https://github.com/ethiha-naing-18-ellison" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                        GitHub
+                      </a>
+                      <a href="https://www.linkedin.com/in/thiha-naing-18t43" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                        LinkedIn
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-            </header>
-
-            {/* Main Content */}
-            <main className="container mx-auto px-4 lg:px-8 py-8">
-              <div className="max-w-7xl mx-auto">
-                {children}
+              
+              <div className="footer-bottom">
+                <p className="footer-copyright">© 2024 ScholarLens. All rights reserved.</p>
               </div>
-            </main>
-
-            {/* Footer */}
-            <footer className="border-t border-border/40 bg-background/80 backdrop-blur-xl mt-16">
-              <div className="container mx-auto px-4 lg:px-8 py-6">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                  <div className="text-sm text-muted-foreground">
-                    © 2024 ScholarLens. Powered by AI for academic research excellence.
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4 md:mt-0">
-                    <span className="text-xs text-muted-foreground">Sources:</span>
-                    <div className="flex space-x-2">
-                      {['arXiv', 'Crossref', 'Semantic Scholar'].map((source) => (
-                        <span key={source} className="px-2 py-1 bg-muted/50 rounded text-xs">
-                          {source}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </footer>
-          </div>
-        </QueryProvider>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   )
